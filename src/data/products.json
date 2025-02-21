@@ -1,68 +1,70 @@
 [
-    {
-      "id": 1,
-      "title": "Camiseta Negra",
-      "description": "Camiseta de algodón 100% de color negro",
-      "price": 1500,
-      "thumbnail": "img/camiseta-negra.jpg",
-      "code": "CAMI123",
-      "stock": 50,
-      "category": "Ropa",
-      "status": true
-    },
-    {
-      "id": 2,
-      "title": "Pantalón Jogger",
-      "description": "Pantalón jogger de felpa suave, ideal para estar cómodo en casa o salir.",
-      "price": 2000,
-      "thumbnail": "img/pantalon-jogger.jpg",
-      "code": "PANJ456",
-      "stock": 35,
-      "category": "Ropa",
-      "status": true
-    },
-    {
-      "id": 3,
-      "title": "Zapatillas Running",
-      "description": "Zapatillas deportivas ligeras para correr o hacer ejercicio.",
-      "price": 3500,
-      "thumbnail": "img/zapatillas-running.jpg",
-      "code": "ZAPA789",
-      "stock": 25,
-      "category": "Calzado",
-      "status": true
-    },
-    {
-      "id": 4,
-      "title": "Chaqueta Deportiva",
-      "description": "Chaqueta impermeable para actividades al aire libre, con capucha ajustable.",
-      "price": 4500,
-      "thumbnail": "img/chaqueta-deportiva.jpg",
-      "code": "CHAQ101",
-      "stock": 40,
-      "category": "Ropa",
-      "status": true
-    },
-    {
-      "id": 5,
-      "title": "Mochila Escolar",
-      "description": "Mochila espaciosa con múltiples compartimentos, perfecta para el colegio.",
-      "price": 1200,
-      "thumbnail": "img/mochila-escolar.jpg",
-      "code": "MOCH112",
-      "stock": 60,
-      "category": "Accesorios",
-      "status": true
-    },
-    {
-      "id": 6,
-      "title": "Gorra Deportiva",
-      "description": "Gorra ligera para actividades deportivas al aire libre.",
-      "price": 800,
-      "thumbnail": "img/gorra-deportiva.jpg",
-      "code": "GORR345",
-      "stock": 100,
-      "category": "Accesorios",
-      "status": true
-    }
+  {
+    "id": 1,
+    "title": "Camiseta Negra",
+    "description": "Camiseta de algodón 100% de color negro",
+    "price": 1500,
+    "thumbnail": "img/camiseta-negra.jpg",
+    "code": "CAMI123",
+    "stock": 50,
+    "category": "Ropa",
+    "status": true
+  },
+  {
+    "id": 2,
+    "title": "Pantalón Jogger",
+    "description": "Pantalón jogger de felpa suave, ideal para estar cómodo en casa o salir.",
+    "price": 2000,
+    "thumbnail": "img/pantalon-jogger.jpg",
+    "code": "PANJ456",
+    "stock": 35,
+    "category": "Ropa",
+    "status": true
+  },
+  {
+    "id": 3,
+    "title": "Zapatillas Running",
+    "description": "Zapatillas deportivas ligeras para correr o hacer ejercicio.",
+    "price": 3500,
+    "thumbnail": "img/zapatillas-running.jpg",
+    "code": "ZAPA789",
+    "stock": 25,
+    "category": "Calzado",
+    "status": true
+  },
+  {
+    "id": 4,
+    "title": "Chaqueta Deportiva",
+    "description": "Chaqueta impermeable para actividades al aire libre, con capucha ajustable.",
+    "price": 4500,
+    "thumbnail": "img/chaqueta-deportiva.jpg",
+    "code": "CHAQ101",
+    "stock": 40,
+    "category": "Ropa",
+    "status": true
+  },
+  {
+    "id": 5,
+    "title": "Mochila Escolar",
+    "description": "Mochila espaciosa con múltiples compartimentos, perfecta para el colegio.",
+    "price": 1200,
+    "thumbnail": "img/mochila-escolar.jpg",
+    "code": "MOCH112",
+    "stock": 60,
+    "category": "Accesorios",
+    "status": true
+  },
+  {
+    "id": 6,
+    "title": "Gorra Deportiva",
+    "description": "Gorra ligera para actividades al aire libre",
+    "price": 1200,
+    "thumbnail": [
+      "img/gorra.jpg"
+    ],
+    "code": "GORR101",
+    "stock": 15,
+    "category": "Accesorios",
+    "status": true
+  }
 ]
