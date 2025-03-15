@@ -53,18 +53,5 @@
     "stock": 60,
     "category": "Accesorios",
     "status": true
-  },
-  {
-    "id": 6,
-    "title": "Gorra Deportiva",
-    "description": "Gorra ligera para actividades al aire libre",
-    "price": 1200,
-    "thumbnail": [
-      "img/gorra.jpg"
-    ],
-    "code": "GORR101",
-    "stock": 15,
-    "category": "Accesorios",
-    "status": true
   }
 ]

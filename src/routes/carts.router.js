@@ -16,7 +16,7 @@ router.get('/:cid', async (req, res) =>{
 
 router.post('/:cid/product/:pid', async (req, res) =>{
     const cart = await cartManager.addProductToCart(Number(req.params.cid), Number(req.params.pid));
-    cart ? res.json(cart) : res.status(404).send('Carrito no encontrado');
+    res.status(cart.status).json({ message: cart.message, cart: cart.cart || null });
 });
 
 export default router;

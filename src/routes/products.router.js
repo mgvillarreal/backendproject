@@ -20,7 +20,7 @@ router.post('/', async (req, res) =>{
     if(product != null){
         res.status(201).json(product);
     }else{
-        res.status(304).send('Código ya existe');
+        res.status(409).send('Código ya existe');
     }
 });
 
@@ -31,7 +31,7 @@ router.put('/:pid', async (req, res) =>{
 
 router.delete('/:pid', async (req, res) =>{
     await productManager.delete(Number(req.params.pid));
-    res.sendStatus(204);
+    res.status(200).send('Producto eliminado con éxito');
 });
 
 export default router;
