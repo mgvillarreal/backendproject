@@ -1,0 +1,17 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 2rem;
+}
+
+h1 {
+    color: #db590b;
+    text-align: center;
+}
+
+li {
+    margin: 1rem 0;
+    list-style: none;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
