@@ -1,14 +1,18 @@
-body {
+body{
     font-family: Arial, sans-serif;
     margin: 2rem;
 }
 
-h1 {
+h1{
     color: #db590b;
     text-align: center;
 }
 
-li {
+h5{
+    text-align: center;
+}
+
+li{
     margin: 1rem 0;
     list-style: none;
     padding: 1rem;

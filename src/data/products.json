@@ -3,10 +3,10 @@
     "id": 1,
     "title": "Camiseta Negra",
     "description": "Camiseta de algodón 100% de color negro",
-    "price": 1500,
+    "price": 1300,
     "thumbnail": "img/camiseta-negra.jpg",
     "code": "CAMI123",
-    "stock": 50,
+    "stock": 20,
     "category": "Ropa",
     "status": true
   },
@@ -51,6 +51,19 @@
     "thumbnail": "img/mochila-escolar.jpg",
     "code": "MOCH112",
     "stock": 60,
+    "category": "Accesorios",
+    "status": true
+  },
+  {
+    "id": 6,
+    "title": "Gorra Deportiva",
+    "description": "Gorra ligera para actividades al aire libre",
+    "price": 1200,
+    "thumbnail": [
+      "img/gorra.jpg"
+    ],
+    "code": "GOR123",
+    "stock": 15,
     "category": "Accesorios",
     "status": true
   }
