@@ -14,10 +14,10 @@
     "id": 2,
     "title": "Pantalón Jogger",
     "description": "Pantalón jogger de felpa suave, ideal para estar cómodo en casa o salir.",
-    "price": 2000,
+    "price": 2300,
     "thumbnail": "img/pantalon-jogger.jpg",
     "code": "PANJ456",
-    "stock": 35,
+    "stock": 20,
     "category": "Ropa",
     "status": true
   },
