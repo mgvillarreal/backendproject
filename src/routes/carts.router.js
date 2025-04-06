@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import CartManager from '../dao/CartManager.js';
+import CartManager from '../dao/managers/CartManagerMongo.js';
 
 const router = Router();
 const cartManager = new CartManager();
@@ -7,10 +7,8 @@ const cartManager = new CartManager();
 router.post('/', async (req, res) =>{
     try{
         const cart = await cartManager.add();
-        res.setHeader('Content-Type', 'application/json');
         res.status(201).json(cart);
     } catch(error){
-        res.setHeader('Content-Type', 'application/json');
         res.status(500).json({error: 'Internal server error.'});
     }
     
@@ -18,23 +16,27 @@ router.post('/', async (req, res) =>{
 
 router.get('/:cid', async (req, res) =>{
     try{
-        const cart = await cartManager.getById(Number(req.params.cid));
-        res.setHeader('Content-Type', 'application/json');
-        cart ? res.json(cart) : res.status(404).send('Carrito no encontrado');
+        const cart = await cartManager.getById(req.params.cid);
+        if (cart) {
+            res.json(cart);
+        } else {
+            res.status(404).json({ error: 'Cart not found' });
+        }
     } catch(error){
-        res.setHeader('Content-Type', 'application/json');
         res.status(500).json({error: 'Internal server error.'});
     }
 });
 
 router.post('/:cid/product/:pid', async (req, res) =>{
     try{
-        const cart = await cartManager.addProductToCart(Number(req.params.cid), Number(req.params.pid));
-        res.setHeader('Content-Type', 'application/json');
-        res.status(cart.status).json({ message: cart.message, cart: cart.cart || null });
+        const updatedCart = await cartManager.addProductToCart(req.params.cid, req.params.pid);
+        res.status(200).json({ message: 'Product added to cart', cart: updatedCart });
     } catch(error){
-        res.setHeader('Content-Type', 'application/json');
-        res.status(500).json({error: 'Internal server error.'});
+        if (error.message === 'Cart not found') {
+            res.status(404).json({ error: 'Cart not found' });
+        } else {
+            res.status(500).json({ error: 'Internal server error.' });
+        }
     }
 });
 

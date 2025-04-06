@@ -28,7 +28,6 @@ const httpServer = app.listen(8080, () => console.log('Servidor escuchando en ht
 const io = new Server(httpServer);
 app.set('socketio', io);
 
-//conectarDB(config.MONGO_URL, config.DB_NAME);
 
 /* ------------------- view ------------------- */
 app.get('/', async (req, res) =>{
