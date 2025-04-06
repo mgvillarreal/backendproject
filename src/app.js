@@ -1,10 +1,12 @@
 import express from 'express';
 import productsRouter from './routes/products.router.js';
 import cartsRouter from './routes/carts.router.js';
-import ProductManager from './managers/ProductManager.js';
+import ProductManager from './dao/ProductManager.js';
 import { engine } from 'express-handlebars';
 import { Server } from 'socket.io';
 import viewsRouter from './routes/views.router.js';
+import { config } from './config/config.js';
+import mongoose from "mongoose";
 
 const app = express();
 
@@ -25,6 +27,8 @@ app.use('/', viewsRouter);
 const httpServer = app.listen(8080, () => console.log('Servidor escuchando en http://localhost:8080'));
 const io = new Server(httpServer);
 app.set('socketio', io);
+
+//conectarDB(config.MONGO_URL, config.DB_NAME);
 
 /* ------------------- view ------------------- */
 app.get('/', async (req, res) =>{
@@ -58,3 +62,19 @@ io.on('connection', async (socket) => {
         io.emit('actualizarProductos', productosActualizados);
     });
 });
+
+/* ------------------- Mongoose ------------------- */
+const connectDB = async(uriMongoDB, dbName)=>{
+    try{
+        await mongoose.connect(
+            config.MONGO_URL,
+            {
+                dbName: config.DB_NAME
+            }
+        )
+        console.log("Mongo Data Base connected!");
+    } catch(error){
+        console.error(`Error connecting to Mongo Data Base. ${error.message}`);
+    }
+}
+connectDB();
