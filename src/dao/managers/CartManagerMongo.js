@@ -3,42 +3,39 @@ import ProductModel from '../models/product.model.js';
 
 export default class CartManager{
     async getAll() {
-        return await Cart.find().populate('products.product');
+        return await CartModel.find().populate('products.product');
     }
   
-    /*async getById(id) {
-        return await Cart.findById(id).populate('products.product');
-    }*/
+    async getById(id) {
+        return await CartModel.findById(id).populate('products.product').lean();
+    }
   
     async add() {
         const newCart = { products: [] };
-        return await Cart.create(newCart);
+        return await CartModel.create(newCart);
     }
   
     async addProductToCart(cartId, productId) {
-        const cart = await Cart.findById(cartId);
+        const cart = await CartModel.findById(cartId);
         if (!cart) throw new Error('Cart not found');
+
+        const product = await ProductModel.findById(productId);
+        if (!product) throw new Error("Product not found. Try with another product");
+
     
         const productIndex = cart.products.findIndex(p => p.product.equals(productId));
     
-        if (productIndex !== -1) {
-            // Ya está el producto, aumentar la cantidad
+        if (productIndex !== -1) { //Producto existe en el carrito, aumenta la cantidad
             cart.products[productIndex].quantity += 1;
-        } else {
-            // No está, agregar nuevo
+        } else { //Producto no está, agrega nuevo
             cart.products.push({ product: productId, quantity: 1 });
         }
   
       return await cart.save();
     }
 
-    async getByIdWithPopulate(cid) {
-        return await Cart.findById(cid).populate('products.product');
-        
-    }
-
     async removeProduct(cid, pid) {
-        const cart = await Cart.findById(cid);
+        const cart = await CartModel.findById(cid);
         if (!cart) return null;
       
         cart.products = cart.products.filter(p => p.product.toString() !== pid);
@@ -47,7 +44,7 @@ export default class CartManager{
     }
 
     async updateCart(cid, newProducts) {
-        const cart = await Cart.findById(cid);
+        const cart = await CartModel.findById(cid);
         if (!cart) return null;
       
         cart.products = newProducts.map(p => ({
@@ -55,15 +52,15 @@ export default class CartManager{
             quantity: p.quantity || 1
         }));
       
-        await cart.save();
+        await CartModel.save();
         return cart;
     }
 
     async updateProductQuantity(cid, pid, quantity) {
-        const cart = await Cart.findById(cid);
+        const cart = await CartModel.findById(cid);
         if (!cart) return null;
       
-        const productInCart = cart.products.find(p => p.product.toString() === pid);
+        const productInCart = CartModel.products.find(p => p.product.toString() === pid);
         if (!productInCart) return null;
       
         productInCart.quantity = quantity;
@@ -72,7 +69,7 @@ export default class CartManager{
     }
 
     async clearCart(cid) {
-        const cart = await Cart.findById(cid);
+        const cart = await CartModel.findById(cid);
         if (!cart) return null;
       
         cart.products = [];

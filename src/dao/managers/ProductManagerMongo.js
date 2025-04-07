@@ -9,14 +9,15 @@ export default class ProductManager{
         const options = {
           page,
           limit,
-          sort: sort ? { price: sort === 'asc' ? 1 : -1 } : undefined
+          sort: sort ? { price: sort === 'asc' ? 1 : -1 } : undefined,
+          lean: true
         };
     
         return await ProductModel.paginate(query, options);
     }
 
     async getById(id) {
-        return await ProductModel.findById(id);
+        return await ProductModel.findById(id).lean();
     }
 
     async add(productData) {
