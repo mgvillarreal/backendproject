@@ -1,8 +1,18 @@
-import { ProductModel } from "../models/product.model.js";
+import Product from "../models/product.model.js";
 
 export default class ProductManager{
     async getAll() {
         return await Product.find();
+    }
+
+    async getAllPaginated({ limit = 10, page = 1, query = {}, sort }) {
+        const options = {
+          page,
+          limit,
+          sort: sort ? { price: sort === 'asc' ? 1 : -1 } : undefined
+        };
+    
+        return await Product.paginate(query, options);
     }
 
     async getById(id) {

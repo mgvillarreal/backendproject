@@ -6,9 +6,9 @@ export default class CartManager{
         return await Cart.find().populate('products.product');
     }
   
-    async getById(id) {
+    /*async getById(id) {
         return await Cart.findById(id).populate('products.product');
-    }
+    }*/
   
     async add() {
         const newCart = { products: [] };
@@ -30,6 +30,54 @@ export default class CartManager{
         }
   
       return await cart.save();
+    }
+
+    async getByIdWithPopulate(cid) {
+        return await Cart.findById(cid).populate('products.product');
+        
+    }
+
+    async removeProduct(cid, pid) {
+        const cart = await Cart.findById(cid);
+        if (!cart) return null;
+      
+        cart.products = cart.products.filter(p => p.product.toString() !== pid);
+        await cart.save();
+        return cart;
+    }
+
+    async updateCart(cid, newProducts) {
+        const cart = await Cart.findById(cid);
+        if (!cart) return null;
+      
+        cart.products = newProducts.map(p => ({
+            product: p.product,
+            quantity: p.quantity || 1
+        }));
+      
+        await cart.save();
+        return cart;
+    }
+
+    async updateProductQuantity(cid, pid, quantity) {
+        const cart = await Cart.findById(cid);
+        if (!cart) return null;
+      
+        const productInCart = cart.products.find(p => p.product.toString() === pid);
+        if (!productInCart) return null;
+      
+        productInCart.quantity = quantity;
+        await cart.save();
+        return cart;
+    }
+
+    async clearCart(cid) {
+        const cart = await Cart.findById(cid);
+        if (!cart) return null;
+      
+        cart.products = [];
+        await cart.save();
+        return cart;
     }
 }
 
