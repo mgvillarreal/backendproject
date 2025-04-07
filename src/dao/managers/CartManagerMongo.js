@@ -7,7 +7,8 @@ export default class CartManager{
     }
   
     async getById(id) {
-        return await CartModel.findById(id).populate('products.product').lean();
+        const cart = await CartModel.findById(id).populate('products.product').lean();
+        if (!cart) throw new Error('Cart not found');
     }
   
     async add() {
@@ -21,7 +22,6 @@ export default class CartManager{
 
         const product = await ProductModel.findById(productId);
         if (!product) throw new Error("Product not found. Try with another product");
-
     
         const productIndex = cart.products.findIndex(p => p.product.equals(productId));
     
@@ -45,7 +45,10 @@ export default class CartManager{
 
     async updateCart(cid, newProducts) {
         const cart = await CartModel.findById(cid);
-        if (!cart) return null;
+        if (!cart) throw new Error('Cart not found');
+
+        const product = await ProductModel.findById(productId);
+        if (!product) throw new Error("Product not found. Try with another product");
       
         cart.products = newProducts.map(p => ({
             product: p.product,
