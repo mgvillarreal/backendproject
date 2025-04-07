@@ -3,7 +3,6 @@ import ProductManager from "../dao/managers/ProductManagerMongo.js";
 
 const router = Router();
 const productManager = new ProductManager();
-//const productManager = new ProductManager("./src/data/products.json");
 
 router.get('/products', async (req, res) => {
     const { limit = 10, page = 1, sort, query } = req.query;

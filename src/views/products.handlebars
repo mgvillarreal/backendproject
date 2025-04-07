@@ -1,26 +1,32 @@
-<h1>Lista de productos</h1>
+<h1>Lista de productos - Mongo DB</h1>
 
-<ul>
-  {{#each products}}
-    <li>
-      <h3>{{this.title}}</h3>
-      <p>{{this.description}}</p>
-      <p>Precio: ${{this.price}}</p>
-      <p>Categoría: {{this.category}}</p>
-      <a href="/products/{{this._id}}">Ver detalles</a>
-      <form action="/api/carts/ID_DEL_CARRITO/products/{{this._id}}" method="POST">
-        <button type="submit">Agregar al carrito</button>
-      </form>
-    </li>
-  {{/each}}
-</ul>
+<div class="container">
+  <div class="product-grid">
+    {{#each products}}
+      <div class="product-card">
+        <h3>{{this.title}}</h3>
+        <p><strong>Descripción:</strong> {{this.description}}</p>
+        <p><strong>Precio:</strong> ${{this.price}}</p>
+        <p><strong>Categoría:</strong> {{this.category}}</p>
+
+        <div class="product-buttons">
+          <a href="/products/{{this._id}}" class="btn btn-detail">Ver detalle</a>
+          <a href="/api/carts/tuCarritoID/product/{{this._id}}" class="btn btn-add">Agregar al carrito</a>
+        </div>
+        <!--<form action="/api/carts/tuCarritoID/product/{{this._id}}" method="POST">
+          <button class="btn" type="submit">Agregar al carrito</button>
+        </form> -->
+      </div>
+    {{/each}}
+  </div>
+</div>
 
 <div class="pagination">
   {{#if hasPrevPage}}
-    <a href="?page={{prevPage}}">Anterior</a>
+    <a href="?page={{prevPage}}">⬅ Página anterior</a>
   {{/if}}
   <span>Página {{currentPage}}</span>
   {{#if hasNextPage}}
-    <a href="?page={{nextPage}}">Siguiente</a>
+    <a href="?page={{nextPage}}">Página siguiente ➡</a>
   {{/if}}
 </div>
