@@ -1,8 +1,8 @@
-import Product from "../models/product.model.js";
+import ProductModel from "../models/product.model.js";
 
 export default class ProductManager{
     async getAll() {
-        return await Product.find();
+        return await ProductModel.find();
     }
 
     async getAllPaginated({ limit = 10, page = 1, query = {}, sort }) {
@@ -12,23 +12,23 @@ export default class ProductManager{
           sort: sort ? { price: sort === 'asc' ? 1 : -1 } : undefined
         };
     
-        return await Product.paginate(query, options);
+        return await ProductModel.paginate(query, options);
     }
 
     async getById(id) {
-        return await Product.findById(id);
+        return await ProductModel.findById(id);
     }
 
     async add(productData) {
-        return await Product.create(productData);
+        return await ProductModel.create(productData);
     }
 
     async update(id, updatedData) {
-        return await Product.findByIdAndUpdate(id, updatedData, { new: true });
+        return await ProductModel.findByIdAndUpdate(id, updatedData, { new: true });
     }
 
     async delete(id) {
-        return await Product.findByIdAndDelete(id);
+        return await ProductModel.findByIdAndDelete(id);
     }
 }
 

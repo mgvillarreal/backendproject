@@ -19,7 +19,9 @@ const cartsSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-export const CartModel = mongoose.model(
+const CartModel = mongoose.model(
     "Carts",
     cartsSchema
 );
+
+export default CartModel;

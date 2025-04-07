@@ -1,7 +1,7 @@
 import express from 'express';
 import productsRouter from './routes/products.router.js';
 import cartsRouter from './routes/carts.router.js';
-import ProductManager from './dao/ProductManager.js';
+import ProductManager from './dao/managers/ProductManagerMongo.js';
 import { engine } from 'express-handlebars';
 import { Server } from 'socket.io';
 import viewsRouter from './routes/views.router.js';
@@ -10,7 +10,8 @@ import mongoose from "mongoose";
 
 const app = express();
 
-const productManager = new ProductManager('./src/data/products.json');
+//const productManager = new ProductManager('./src/data/products.json');
+const productManager = new ProductManager;
 
 app.use(express.json());
 app.use(express.static('public'));
