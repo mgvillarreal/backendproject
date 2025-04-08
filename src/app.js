@@ -10,7 +10,6 @@ import mongoose from "mongoose";
 
 const app = express();
 
-//const productManager = new ProductManager('./src/data/products.json');
 const productManager = new ProductManager;
 
 app.use(express.json());
@@ -48,14 +47,12 @@ io.on('connection', async (socket) => {
     const products = await productManager.getAll();
     socket.emit('actualizarProductos', products);
 
-    // Add product
     socket.on('nuevoProducto', async (producto) => {
         await productManager.add(producto);
         const productosActualizados = await productManager.getAll();
         io.emit('actualizarProductos', productosActualizados); 
     });
 
-    // Delete product
     socket.on('eliminarProducto', async (id) => {
         await productManager.delete(parseInt(id));
         const productosActualizados = await productManager.getAll();

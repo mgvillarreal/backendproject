@@ -6,9 +6,6 @@ const productManager = new ProductManager();
 
 router.get('/', async (req, res) =>{
     try{
-        //const products = await productManager.getAll();
-        //res.status(200).json(products);
-
         const { limit = 10, page = 1, sort, query } = req.query;
 
         let parsedQuery = {};

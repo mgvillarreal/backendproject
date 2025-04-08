@@ -32,5 +32,3 @@ export default class ProductManager{
         return await ProductModel.findByIdAndDelete(id);
     }
 }
-
-//module.exports = ProductManager;
