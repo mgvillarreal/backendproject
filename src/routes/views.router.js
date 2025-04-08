@@ -1,9 +1,10 @@
 import { Router } from "express";
 import ProductManager from "../dao/managers/ProductManagerMongo.js";
-import CartModel from '../dao/models/cart.model.js';
+import CartManager from '../dao/managers/CartManagerMongo.js';
 
 const router = Router();
 const productManager = new ProductManager();
+const cartManager = new CartManager();
 
 router.get('/products', async (req, res) => {
     const { limit = 10, page = 1, sort, query } = req.query;
@@ -31,15 +32,13 @@ router.get('/products/:pid', async (req, res) => {
     res.render('productDetail', { product });
 });
 
-/*router.get('/carts/:cid', async (req, res) => {
-    const cart = await CartModel.findById(req.params.cid).populate('products.product').lean();
-    if (!cart) return res.status(404).send("Cart not found");
-  
-    res.render('cart', {
-        cartId: cart._id,
-        products: cart.products
-    });
-});*/
+router.get('/carts/:cid', async (req, res) => {
+    const cart = await cartManager.getById(req.params.cid);
+    if (!cart) return res.status(404).render('404');
+
+    console.log("cart> ", cart)
+    res.render('cart', { cart });
+});
 
 /*router.get("/", async (req, res) => { //SEGUNDA PREENTREGA
     try {
