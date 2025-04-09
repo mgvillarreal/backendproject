@@ -6,7 +6,7 @@ const router = Router();
 const productManager = new ProductManager();
 const cartManager = new CartManager();
 
-router.get('/products', async (req, res) => {
+router.get('/', async (req, res) => {
     const { limit = 10, page = 1, sort, query } = req.query;
     const result = await productManager.getAllPaginated({
       limit: parseInt(limit),
@@ -36,7 +36,6 @@ router.get('/carts/:cid', async (req, res) => {
     const cart = await cartManager.getById(req.params.cid);
     if (!cart) return res.status(404).render('404');
 
-    console.log("cart> ", cart)
     res.render('cart', { cart });
 });
 

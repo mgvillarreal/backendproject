@@ -398,3 +398,16 @@ h1 {
   .btn-back:hover {
     background-color: #e5e7eb;
   }
+
+  .btn-delete {
+    background-color: #ff4d4d;
+    color: white;
+  }
+  
+  .btn-clear {
+    background-color: #ff9900;
+    color: white;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+  }

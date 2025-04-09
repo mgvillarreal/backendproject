@@ -29,7 +29,7 @@ const io = new Server(httpServer);
 app.set('socketio', io);
 
 
-/* ------------------- view ------------------- */
+/* ------------------- view ------------------- */ //SEGUNDA PREENTREGA
 app.get('/', async (req, res) =>{
     try{
         const products = await productManager.getAll();
@@ -40,7 +40,7 @@ app.get('/', async (req, res) =>{
     }
 });
 
-/* ------------------- socket.io ------------------- */
+/* ------------------- socket.io ------------------- */ //SEGUNDA PREENTREGA
 io.on('connection', async (socket) => {
     console.log('Nuevo cliente conectado');
 

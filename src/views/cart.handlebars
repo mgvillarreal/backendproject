@@ -12,15 +12,22 @@
             <p><strong>Precio:</strong> ${{this.product.price}}</p>
             <p><strong>Categoría:</strong> {{this.product.category}}</p>
             <p><strong>Cantidad:</strong> {{this.quantity}}</p>
+
+            <form action="/api/carts/67f4594c6e62ca7572b6525b/product/{{this.product._id}}" method="DELETE" onsubmit="event.preventDefault(); fetch(this.action, { method: 'DELETE' }).then(() => location.reload())">
+              <button class="btn btn-delete" type="submit">Eliminar</button>
+            </form>
           </div>
         </li>
       {{/each}}
+      <form action="/api/carts/67f4594c6e62ca7572b6525b" method="DELETE" onsubmit="event.preventDefault(); fetch(this.action, { method: 'DELETE' }).then(() => location.reload())">
+        <button class="btn btn-clear">Vaciar carrito</button>
+      </form>
     </ul>
   {{else}}
     <p class="empty-cart">No hay productos en el carrito.</p>
   {{/if}}
 
   <div class="back-link">
-    <a href="/products">← Seguir comprando</a>
+    <a href="/">← Seguir comprando</a>
   </div>
 </div>
